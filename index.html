@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Parel</title>
+    <!-- TAMBAHAN: Link Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <style>
         /* Pengaturan Dasar & Animasi Background */
         body {
@@ -30,6 +33,7 @@
             margin: 0 auto;
             padding: 50px 20px;
             text-align: center;
+            width: 100%; /* Tambahan agar tidak melebar aneh */
         }
 
         /* Animasi Foto Profil */
@@ -76,7 +80,8 @@
             border-right: 3px solid #4df8e8;
             margin: 0 auto;
             letter-spacing: 1px;
-            animation: typing 4s steps(45, end), blink-caret .75s step-end infinite;
+            /* Disesuaikan panjang teksnya agar animasi pas */
+            animation: typing 4s steps(66, end), blink-caret .75s step-end infinite;
         }
 
         @keyframes typing {
@@ -158,6 +163,7 @@
             margin-top: 30px;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap; 
             gap: 15px;
         }
 
@@ -170,6 +176,9 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             font-weight: bold;
             transition: all 0.3s ease;
+            display: inline-flex; /* Agar ikon dan teks sejajar */
+            align-items: center;
+            gap: 8px; /* Jarak antara ikon dan teks */
         }
 
         .social-btn:hover {
@@ -178,6 +187,42 @@
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 20px rgba(77, 248, 232, 0.4);
         }
+        
+        /* Desain Grid */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .design-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .design-box:hover {
+            transform: translateY(-5px);
+            border-color: #4df8e8;
+        }
+
+        .design-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .design-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -185,21 +230,26 @@
     <div class="container">
         <!-- Bagian Foto Profil Bergerak -->
         <div class="profile-wrapper">
-            <!-- Ganti "foto-anda.jpg" dengan nama file foto asli Anda -->
-            <img src="parel.jpeg" alt="parel" class="profile-img">
+            <img src="parel.jpeg" alt="parel.jpeg" class="profile-img">
         </div>
         
         <!-- Bagian Header -->
         <h1 style="margin-bottom: 5px; font-size: 2.5rem;">Halo, Saya Parel</h1>
         <div class="typing-container">
-            <div class="typing-text">Mahasiswa Teknik Informatika | Bug Hunter | IT Freelancer</div>
+            <div class="typing-text">Mahasiswa Teknik Informatika | Bug Hunter | Desain | IT Freelancer</div>
         </div>
 
         <!-- Tombol Kontak -->
         <div class="social-links">
-            <a href="#" class="social-btn">GitHub</a>
-            <a href="#" class="social-btn">Projects.co.id</a>
-            <a href="#" class="social-btn">Email</a>
+            <a href="https://github.com/A2elll" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://projects.co.id/public/profile/parell2sec" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <i class="fas fa-briefcase"></i> Projects.co.id
+            </a>
+            <a href="mailto:parell200730@gmail.com" class="social-btn">
+                <i class="fas fa-envelope"></i> Email
+            </a>
         </div>
 
         <!-- Bagian Tentang Saya -->
@@ -229,7 +279,7 @@
             </div>
         </div>
 
-        <!-- Bagian Keahlian -->
+        <!-- Bagian Keahlian (Hanya 1, yang dobel sudah dihapus) -->
         <div class="card">
             <h2 style="margin-top: 0; color: #4df8e8;">Keterampilan Teknis</h2>
             <div class="skills">
@@ -238,10 +288,34 @@
                 <span>HTML / CSS / JS</span>
                 <span>Python & C++ Modern</span>
                 <span>Database Administration</span>
+                <span>Design</span>
                 <span>Technical Writing</span>
             </div>
         </div>
-    </div>
+
+        <!-- Bagian Desain & Branding (Hanya 1, struktur sudah rapi) -->
+        <div class="card">
+            <h2 style="margin-top: 0; color: #4df8e8;">Freelance & Desain Grafis</h2>
+            <p style="margin-bottom: 20px;">
+                Selain fokus pada keamanan siber dan pemrograman, saya juga mengeksplorasi desain visual. Berikut adalah salah satu proyek desain identitas merek (Brand Identity) dan materi promosi untuk UMKM.
+            </p>
+            
+            <div class="design-grid">
+                <!-- Desain Logo -->
+                <div class="design-box">
+                    <img src="logo-esteh.jpg" alt="Desain Logo Es Teh Kito">
+                    <p><strong>Logo Design</strong> - Es Teh Kito</p>
+                </div>
+                
+                <!-- Desain Poster -->
+                <div class="design-box">
+                    <img src="Poster-EsTeh.jpg" alt="Desain Poster Es Teh Kito">
+                    <p><strong>Poster Design</strong> - Es Teh Kito</p>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- Penutup Container -->
 
 </body>
 </html>
