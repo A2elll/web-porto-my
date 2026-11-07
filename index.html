@@ -69,11 +69,10 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* Gaya untuk Video Logo di Navbar */
         .nav-logo-video {
-            height: 45px; /* Ukuran logo di pojok kiri atas */
+            height: 40px; 
             width: auto;
-            mix-blend-mode: screen; /* Menghilangkan background hitam video */
+            mix-blend-mode: screen;
             transition: transform 0.3s ease;
         }
 
@@ -96,15 +95,53 @@
             color: var(--neon);
         }
 
-        /* === HERO SECTION (SPLIT LAYOUT) === */
-        .hero {
+        /* === SECTION 1: LOGO RAKSASA (FULL SCREEN) === */
+        .logo-hero {
+            height: 100vh; /* Memenuhi 1 layar penuh */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding-top: 60px; /* Ruang untuk navbar */
+        }
+
+        /* Video Logo Raksasa */
+        .full-logo-video {
+            width: 100%;
+            max-width: 800px; /* Sesuaikan ukuran logo agar besar */
+            mix-blend-mode: screen; /* Trik menghilangkan background */
+            z-index: 2;
+        }
+
+        /* Teks "Scroll Down" */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* === SECTION 2: PERKENALAN (MUNCUL SAAT DI-SCROLL) === */
+        .intro-section {
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
-            padding: 0 10%;
+            padding: 100px 10%;
             gap: 50px;
-            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
         }
 
         .hero-text h1 {
@@ -172,18 +209,16 @@
             color: var(--neon);
         }
 
-        /* Area Kanan Hero (Foto & Video) */
-        .hero-visuals {
+        /* Foto Profil */
+        .hero-image {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
             position: relative;
         }
 
         .hero-image img {
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             object-fit: cover;
             border-radius: 20px;
             border: 2px solid var(--border-color);
@@ -191,7 +226,6 @@
             z-index: 2;
             filter: grayscale(20%) contrast(110%);
             transition: all 0.5s ease;
-            margin-bottom: 20px;
         }
 
         .hero-image img:hover {
@@ -201,29 +235,20 @@
             box-shadow: 0 15px 30px rgba(77, 248, 232, 0.2);
         }
 
-        /* Gaya untuk Video Logo Besar di Bawah Foto */
-        .hero-logo-video {
-            width: 100%;
-            max-width: 350px; /* Lebar maksimal animasi logo */
-            mix-blend-mode: screen; /* Trik menghilangkan background hitam */
-            z-index: 2;
-        }
-
-        /* Efek Glow di belakang foto */
-        .hero-visuals::before {
+        .hero-image::before {
             content: '';
             position: absolute;
             width: 300px;
             height: 300px;
             background: var(--neon);
             border-radius: 20px;
-            filter: blur(100px);
+            filter: blur(80px);
             opacity: 0.2;
             z-index: 1;
-            top: 20%;
+            top: 10%;
         }
 
-        /* === SECTION UMUM === */
+        /* === SECTION UMUM & LAINNYA === */
         .section-container {
             padding: 100px 10%;
             border-top: 1px solid var(--border-color);
@@ -244,7 +269,6 @@
             background: var(--border-color);
         }
 
-        /* === PROJECTS GRID === */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -271,17 +295,6 @@
             margin-bottom: 20px;
         }
 
-        .project-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* === SKILLS (TAGS) === */
         .skills-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -295,16 +308,13 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             transition: all 0.3s;
-            background: rgba(255,255,255,0.02);
         }
 
         .skill-tag:hover {
             border-color: var(--neon);
             color: var(--neon);
-            background: rgba(77, 248, 232, 0.1);
         }
 
-        /* === DESAIN GRAFIS (GRID) === */
         .design-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -315,18 +325,11 @@
             border: 1px solid var(--border-color);
             border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s;
             background: #111820;
-        }
-
-        .design-item:hover {
-            transform: scale(1.02);
-            border-color: var(--neon);
         }
 
         .design-item img {
             width: 100%;
-            height: auto;
             display: block;
             border-bottom: 1px solid var(--border-color);
         }
@@ -342,46 +345,27 @@
             font-size: 0.9rem;
         }
 
-        /* === FOOTER === */
         footer {
             text-align: center;
             padding: 40px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 0.9rem;
         }
 
         /* === RESPONSIVE (MOBILE) === */
         @media (max-width: 968px) {
-            .hero {
+            .intro-section {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding-top: 100px;
+                padding-top: 50px;
             }
-
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero-text p {
-                margin: 0 auto 30px auto;
-            }
-
-            .btn-group {
-                justify-content: center;
-            }
-
-            .hero-visuals {
-                margin-top: 30px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            nav {
-                justify-content: center;
-            }
+            .hero-text h1 { font-size: 2.8rem; }
+            .hero-text p { margin: 0 auto 30px auto; }
+            .btn-group { justify-content: center; }
+            .hero-image { margin-top: 30px; }
+            .nav-links { display: none; }
+            nav { justify-content: center; }
+            .full-logo-video { max-width: 90%; }
         }
     </style>
 </head>
@@ -389,14 +373,11 @@
 
     <!-- NAVBAR -->
     <nav>
-        <!-- Logo Video di Kiri Atas -->
-        <a href="#">
+        <a href="#logo-top">
             <video autoplay loop muted playsinline class="nav-logo-video">
                 <source src="logo-animasi.mp4" type="video/mp4">
-                Browser kamu tidak mendukung tag video.
             </video>
         </a>
-        
         <div class="nav-links">
             <a href="#about">Tentang</a>
             <a href="#projects">Proyek</a>
@@ -405,8 +386,22 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (KIRI TEKS, KANAN FOTO + VIDEO LOGO) -->
-    <section class="hero" id="about">
+    <!-- SECTION 1: LOGO FULL SCREEN DI PALING ATAS -->
+    <section class="logo-hero" id="logo-top">
+        <!-- Video Logo Raksasa -->
+        <video autoplay loop muted playsinline class="full-logo-video">
+            <source src="logo-animasi.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Indikator Scroll -->
+        <div class="scroll-indicator">
+            <span>SCROLL KE BAWAH</span>
+            <i class="fas fa-chevron-down" style="margin-top: 10px;"></i>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PERKENALAN (SPLIT LAYOUT) -->
+    <section class="intro-section" id="about">
         <div class="hero-text" data-aos="fade-right">
             <h1>Halo, Saya <br><span>Parel.</span></h1>
             <span class="typing-text"><i class="fas fa-terminal"></i> Bug Hunter & IT Freelancer</span>
@@ -418,16 +413,8 @@
             </div>
         </div>
         
-        <!-- Area Kanan: Foto & Video Animasi Logo -->
-        <div class="hero-visuals" data-aos="fade-left">
-            <div class="hero-image">
-                <img src="parel.jpeg" alt="Foto Parel">
-            </div>
-            
-            <!-- Video Animasi Logo Besar -->
-            <video autoplay loop muted playsinline class="hero-logo-video">
-                <source src="logo-animasi.mp4" type="video/mp4">
-            </video>
+        <div class="hero-image" data-aos="fade-left">
+            <img src="parel.jpeg" alt="Foto Parel">
         </div>
     </section>
 
@@ -438,7 +425,7 @@
             <div class="project-card" data-aos="fade-up" data-aos-delay="100">
                 <i class="fas fa-shield-halved"></i>
                 <h3>Keamanan Web</h3>
-                <p>Melakukan simulasi serangan dan analisis kerentanan (SQLi, XSS, SSRF, IDOR) menggunakan Burp Suite melalui platform seperti PortSwigger,Hackerone,Bugcrowd dll</p>
+                <p>Melakukan simulasi serangan dan analisis kerentanan (SQLi, XSS, SSRF, IDOR) menggunakan Burp Suite melalui platform seperti PortSwigger.</p>
             </div>
             <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-laptop-code"></i>
@@ -470,20 +457,13 @@
     <!-- DESAIN GRAFIS -->
     <section class="section-container" id="design">
         <h2 class="section-title" data-aos="fade-up">Freelance & Desain Grafis</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px; max-width: 700px;" data-aos="fade-up">
-            Selain fokus pada keamanan siber, saya juga mengeksplorasi desain visual. Berikut adalah proyek desain identitas merek (Brand Identity) dan materi promosi untuk UMKM.
-        </p>
-        
-        <div class="design-grid">
-            <!-- Desain Logo -->
+        <div class="design-grid" style="margin-top: 30px;">
             <div class="design-item" data-aos="zoom-in" data-aos-delay="100">
                 <img src="logo-esteh.png" alt="Desain Logo Es Teh Kito">
                 <div class="design-info">
                     <p>Logo Design - Es Teh Kito</p>
                 </div>
             </div>
-            
-            <!-- Desain Poster -->
             <div class="design-item" data-aos="zoom-in" data-aos-delay="200">
                 <img src="Poster-EsTeh.png" alt="Desain Poster Es Teh Kito">
                 <div class="design-info">
@@ -493,12 +473,12 @@
         </div>
     </section>
 
-    <!-- FOOTER & SOSIAL MEDIA -->
+    <!-- FOOTER -->
     <footer>
         <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; font-size: 1.5rem;">
-            <a href="https://github.com/A2elll" target="_blank" style="color: white; transition: 0.3s;" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fab fa-github"></i></a>
-            <a href="https://projects.co.id/public/profile/parell2sec" target="_blank" style="color: white; transition: 0.3s;" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fas fa-briefcase"></i></a>
-            <a href="mailto:parell200730@gmail.com" style="color: white; transition: 0.3s;" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/A2elll" target="_blank" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fab fa-github"></i></a>
+            <a href="https://projects.co.id/public/profile/parell2sec" target="_blank" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fas fa-briefcase"></i></a>
+            <a href="mailto:parell200730@gmail.com" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fas fa-envelope"></i></a>
         </div>
         <p>&copy; 2026 Parel. Built with pure HTML & CSS.</p>
     </footer>
