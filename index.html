@@ -3,319 +3,514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Parel</title>
-    <!-- TAMBAHAN: Link Font Awesome untuk Ikon -->
+    <title>Parel | IT Freelancer | Bug Hunter</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        /* Pengaturan Dasar & Animasi Background */
-        body {
+        /* === PENGATURAN DASAR === */
+        :root {
+            --bg-color: #0a0f14;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --neon: #4df8e8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
             color: white;
-            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a6c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 50px 20px;
-            text-align: center;
-            width: 100%; /* Tambahan agar tidak melebar aneh */
-        }
-
-        /* Animasi Foto Profil */
-        .profile-wrapper {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 20px auto;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .profile-img {
+        /* === NAVBAR === */
+        nav {
+            position: fixed;
+            top: 0;
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
-            animation: glowPulse 2s infinite alternate;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 15, 20, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        /* Gaya untuk Video Logo di Navbar */
+        .nav-logo-video {
+            height: 45px; /* Ukuran logo di pojok kiri atas */
+            width: auto;
+            mix-blend-mode: screen; /* Menghilangkan background hitam video */
+            transition: transform 0.3s ease;
         }
 
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 15px rgba(0, 255, 200, 0.4), 0 0 30px rgba(0, 255, 200, 0.2); }
-            100% { box-shadow: 0 0 25px rgba(0, 255, 200, 0.8), 0 0 50px rgba(0, 255, 200, 0.5); }
+        .nav-logo-video:hover {
+            transform: scale(1.1);
         }
 
-        /* Efek Mengetik */
-        .typing-container {
-            display: inline-block;
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon);
+        }
+
+        /* === HERO SECTION (SPLIT LAYOUT) === */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 0 10%;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
             margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--neon);
         }
 
         .typing-text {
             font-size: 1.2rem;
-            color: #4df8e8;
-            overflow: hidden; 
-            white-space: nowrap; 
-            border-right: 3px solid #4df8e8;
-            margin: 0 auto;
-            letter-spacing: 1px;
-            /* Disesuaikan panjang teksnya agar animasi pas */
-            animation: typing 4s steps(66, end), blink-caret .75s step-end infinite;
+            color: var(--neon);
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: block;
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 40px;
         }
 
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #4df8e8; }
+        /* Tombol */
+        .btn-group {
+            display: flex;
+            gap: 20px;
         }
 
-        /* Desain Kartu (Glassmorphism) */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            margin-top: 30px;
-            transition: all 0.4s ease;
-            text-align: left;
-            line-height: 1.7;
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--neon);
+            color: var(--bg-color);
+            border: 2px solid var(--neon);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--neon);
+            box-shadow: 0 0 15px rgba(77, 248, 232, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--neon);
+            color: var(--neon);
+        }
+
+        /* Area Kanan Hero (Foto & Video) */
+        .hero-visuals {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .card:hover {
+        .hero-image img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            position: relative;
+            z-index: 2;
+            filter: grayscale(20%) contrast(110%);
+            transition: all 0.5s ease;
+            margin-bottom: 20px;
+        }
+
+        .hero-image img:hover {
+            filter: grayscale(0%) contrast(100%);
+            border-color: var(--neon);
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 40px rgba(0, 255, 200, 0.2);
-            border: 1px solid rgba(0, 255, 200, 0.3);
+            box-shadow: 0 15px 30px rgba(77, 248, 232, 0.2);
         }
 
-        /* Grid untuk Proyek/Fokus */
+        /* Gaya untuk Video Logo Besar di Bawah Foto */
+        .hero-logo-video {
+            width: 100%;
+            max-width: 350px; /* Lebar maksimal animasi logo */
+            mix-blend-mode: screen; /* Trik menghilangkan background hitam */
+            z-index: 2;
+        }
+
+        /* Efek Glow di belakang foto */
+        .hero-visuals::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--neon);
+            border-radius: 20px;
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: 1;
+            top: 20%;
+        }
+
+        /* === SECTION UMUM === */
+        .section-container {
+            padding: 100px 10%;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* === PROJECTS GRID === */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .project-box {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 30px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
         }
 
-        .project-box:hover {
-            transform: scale(1.05);
-            border-color: #4df8e8;
+        .project-card:hover {
+            border-color: var(--neon);
+            transform: translateY(-5px);
+            background: rgba(77, 248, 232, 0.05);
         }
 
-        /* Keahlian / Tags */
-        .skills span {
-            display: inline-block;
-            padding: 8px 18px;
-            margin: 6px 6px 6px 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+        .project-card i {
+            font-size: 2rem;
+            color: var(--neon);
+            margin-bottom: 20px;
         }
 
-        .skills span:hover {
-            background: rgba(0, 255, 200, 0.2);
-            border-color: #4df8e8;
-            color: #fff;
-            transform: translateY(-2px);
+        .project-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        /* Tombol Sosial Media */
-        .social-links {
-            margin-top: 30px;
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* === SKILLS (TAGS) === */
+        .skills-wrapper {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .social-btn {
-            text-decoration: none;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: inline-flex; /* Agar ikon dan teks sejajar */
-            align-items: center;
-            gap: 8px; /* Jarak antara ikon dan teks */
+        .skill-tag {
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.02);
         }
 
-        .social-btn:hover {
-            background: #4df8e8;
-            color: #0f2027;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(77, 248, 232, 0.4);
+        .skill-tag:hover {
+            border-color: var(--neon);
+            color: var(--neon);
+            background: rgba(77, 248, 232, 0.1);
         }
-        
-        /* Desain Grid */
+
+        /* === DESAIN GRAFIS (GRID) === */
         .design-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-top: 15px;
         }
 
-        .design-box {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
+        .design-item {
+            border: 1px solid var(--border-color);
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+            transition: transform 0.3s;
+            background: #111820;
+        }
+
+        .design-item:hover {
+            transform: scale(1.02);
+            border-color: var(--neon);
+        }
+
+        .design-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .design-info {
+            padding: 20px;
             text-align: center;
         }
 
-        .design-box:hover {
-            transform: translateY(-5px);
-            border-color: #4df8e8;
-        }
-
-        .design-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .design-box p {
-            margin: 0;
+        .design-info p {
+            color: var(--neon);
+            font-weight: 600;
             font-size: 0.9rem;
-            color: #ccc;
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE (MOBILE) === */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 30px auto;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .hero-visuals {
+                margin-top: 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            nav {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Bagian Foto Profil Bergerak -->
-        <div class="profile-wrapper">
-            <img src="parel.jpeg" alt="parel.jpeg" class="profile-img">
+    <!-- NAVBAR -->
+    <nav>
+        <!-- Logo Video di Kiri Atas -->
+        <a href="#">
+            <video autoplay loop muted playsinline class="nav-logo-video">
+                <source src="logo-animasi.mp4" type="video/mp4">
+                Browser kamu tidak mendukung tag video.
+            </video>
+        </a>
+        
+        <div class="nav-links">
+            <a href="#about">Tentang</a>
+            <a href="#projects">Proyek</a>
+            <a href="#skills">Keahlian</a>
+            <a href="#design">Desain</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (KIRI TEKS, KANAN FOTO + VIDEO LOGO) -->
+    <section class="hero" id="about">
+        <div class="hero-text" data-aos="fade-right">
+            <h1>Halo, Saya <br><span>Parel.</span></h1>
+            <span class="typing-text"><i class="fas fa-terminal"></i> Bug Hunter & IT Freelancer</span>
+            <p>Menjalani studi S1 Teknik Informatika memberikan saya landasan teori yang kuat. Saya fokus pada eksplorasi praktis keamanan siber, menguji kerentanan aplikasi (SQLi, XSS), dan membangun sistem IT yang efisien.</p>
+            
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary">Lihat Proyek <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:parell200730@gmail.com" class="btn btn-outline">Hubungi Saya</a>
+            </div>
         </div>
         
-        <!-- Bagian Header -->
-        <h1 style="margin-bottom: 5px; font-size: 2.5rem;">Halo, Saya Parel</h1>
-        <div class="typing-container">
-            <div class="typing-text">Mahasiswa Teknik Informatika | Bug Hunter | Desain | IT Freelancer</div>
-        </div>
-
-        <!-- Tombol Kontak -->
-        <div class="social-links">
-            <a href="https://github.com/A2elll" target="_blank" rel="noopener noreferrer" class="social-btn">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://projects.co.id/public/profile/parell2sec" target="_blank" rel="noopener noreferrer" class="social-btn">
-                <i class="fas fa-briefcase"></i> Projects.co.id
-            </a>
-            <a href="mailto:parell200730@gmail.com" class="social-btn">
-                <i class="fas fa-envelope"></i> Email
-            </a>
-        </div>
-
-        <!-- Bagian Tentang Saya -->
-        <div class="card">
-            <h2 style="margin-top: 0; color: #4df8e8;">Tentang Saya</h2>
-            <p>
-                Menjalani studi S1 Teknik Informatika memberikan saya landasan teori yang kuat, namun ketertarikan utama saya terletak pada eksplorasi praktis. Saya menaruh fokus besar pada dunia keamanan siber, menguji kerentanan pada aplikasi, dan memahami bagaimana sistem bekerja di balik layar.
-            </p>
-        </div>
-
-        <!-- Bagian Fokus Proyek (Grid) -->
-        <div class="card">
-            <h2 style="margin-top: 0; color: #4df8e8;">Fokus & Proyek Saat Ini</h2>
-            <div class="project-grid">
-                <div class="project-box">
-                    <h3>🛡️ Keamanan Web</h3>
-                    <p>Melakukan simulasi serangan dan analisis kerentanan (SQLi, XSS, SSRF, IDOR) menggunakan Burp Suite melalui platform seperti PortSwigger.</p>
-                </div>
-                <div class="project-box">
-                    <h3>💻 Pengembangan IT</h3>
-                    <p>Membangun proyek pemrograman dengan Python, C++, mengatur topologi jaringan di Cisco Packet Tracer, dan mengelola basis data MariaDB.</p>
-                </div>
-                <div class="project-box">
-                    <h3>🎨 Desain & AI</h3>
-                    <p>Merancang presentasi dan identitas visual menggunakan Canva, serta meracik *prompt* AI untuk menghasilkan karya fotografi dan visual yang realistis.</p>
-                </div>
+        <!-- Area Kanan: Foto & Video Animasi Logo -->
+        <div class="hero-visuals" data-aos="fade-left">
+            <div class="hero-image">
+                <img src="parel.jpeg" alt="Foto Parel">
             </div>
-        </div>
-
-        <!-- Bagian Keahlian (Hanya 1, yang dobel sudah dihapus) -->
-        <div class="card">
-            <h2 style="margin-top: 0; color: #4df8e8;">Keterampilan Teknis</h2>
-            <div class="skills">
-                <span>Web Application Security</span>
-                <span>Penetration Testing</span>
-                <span>HTML / CSS / JS</span>
-                <span>Python & C++ Modern</span>
-                <span>Database Administration</span>
-                <span>Design</span>
-                <span>Technical Writing</span>
-            </div>
-        </div>
-
-        <!-- Bagian Desain & Branding (Hanya 1, struktur sudah rapi) -->
-        <div class="card">
-            <h2 style="margin-top: 0; color: #4df8e8;">Freelance & Desain Grafis</h2>
-            <p style="margin-bottom: 20px;">
-                Selain fokus pada keamanan siber dan pemrograman, saya juga mengeksplorasi desain visual. Berikut adalah salah satu proyek desain identitas merek (Brand Identity) dan materi promosi untuk UMKM.
-            </p>
             
-            <div class="design-grid">
-                <!-- Desain Logo -->
-                <div class="design-box">
-                    <img src="logo-esteh.png" alt="Desain Logo Es Teh Kito">
-                    <p><strong>Logo Design</strong> - Es Teh Kito</p>
+            <!-- Video Animasi Logo Besar -->
+            <video autoplay loop muted playsinline class="hero-logo-video">
+                <source src="logo-animasi.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <!-- FOKUS & PROYEK -->
+    <section class="section-container" id="projects">
+        <h2 class="section-title" data-aos="fade-up">Fokus & Proyek</h2>
+        <div class="project-grid">
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-shield-halved"></i>
+                <h3>Keamanan Web</h3>
+                <p>Melakukan simulasi serangan dan analisis kerentanan (SQLi, XSS, SSRF, IDOR) menggunakan Burp Suite melalui platform seperti PortSwigger.</p>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Pengembangan IT</h3>
+                <p>Membangun proyek pemrograman dengan Python, C++, mengatur topologi jaringan di Cisco Packet Tracer, dan mengelola basis data MariaDB.</p>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-palette"></i>
+                <h3>Desain & AI</h3>
+                <p>Merancang presentasi dan identitas visual menggunakan Canva, serta meracik prompt AI untuk menghasilkan karya visual yang realistis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEAHLIAN TEKNIS -->
+    <section class="section-container" id="skills">
+        <h2 class="section-title" data-aos="fade-up">Keterampilan Teknis</h2>
+        <div class="skills-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <span class="skill-tag">Web Application Security</span>
+            <span class="skill-tag">Penetration Testing</span>
+            <span class="skill-tag">HTML / CSS / JS</span>
+            <span class="skill-tag">Python & C++ Modern</span>
+            <span class="skill-tag">Database Administration</span>
+            <span class="skill-tag">Design</span>
+            <span class="skill-tag">Technical Writing</span>
+        </div>
+    </section>
+
+    <!-- DESAIN GRAFIS -->
+    <section class="section-container" id="design">
+        <h2 class="section-title" data-aos="fade-up">Freelance & Desain Grafis</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px; max-width: 700px;" data-aos="fade-up">
+            Selain fokus pada keamanan siber, saya juga mengeksplorasi desain visual. Berikut adalah proyek desain identitas merek (Brand Identity) dan materi promosi untuk UMKM.
+        </p>
+        
+        <div class="design-grid">
+            <!-- Desain Logo -->
+            <div class="design-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="logo-esteh.png" alt="Desain Logo Es Teh Kito">
+                <div class="design-info">
+                    <p>Logo Design - Es Teh Kito</p>
                 </div>
-                
-                <!-- Desain Poster -->
-                <div class="design-box">
-                    <img src="Poster-EsTeh.png" alt="Desain Poster Es Teh Kito">
-                    <p><strong>Poster Design</strong> - Es Teh Kito</p>
+            </div>
+            
+            <!-- Desain Poster -->
+            <div class="design-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="Poster-EsTeh.png" alt="Desain Poster Es Teh Kito">
+                <div class="design-info">
+                    <p>Poster Design - Es Teh Kito</p>
                 </div>
             </div>
         </div>
+    </section>
 
-    </div> <!-- Penutup Container -->
+    <!-- FOOTER & SOSIAL MEDIA -->
+    <footer>
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; font-size: 1.5rem;">
+            <a href="https://github.com/A2elll" target="_blank" style="color: white; transition: 0.3s;" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fab fa-github"></i></a>
+            <a href="https://projects.co.id/public/profile/parell2sec" target="_blank" style="color: white; transition: 0.3s;" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fas fa-briefcase"></i></a>
+            <a href="mailto:parell200730@gmail.com" style="color: white; transition: 0.3s;" onmouseover="this.style.color='#4df8e8'" onmouseout="this.style.color='white'"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Parel. Built with pure HTML & CSS.</p>
+    </footer>
 
+    <!-- AOS SCRIPT -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+    </script>
 </body>
 </html>
